@@ -17,4 +17,5 @@ Route::middleware(['auth'])->group(function(){
 
 Route::middleware(['auth',AuthAdmin::class])->group(function(){
     Route::get('/admin-dashboard',[AdminController::class,'index'])->name('admin.index');
+    Route::get('/admin-brand',[AdminController::class,'brandPage'])->name('admin.brand');
 });
