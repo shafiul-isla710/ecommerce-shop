@@ -34,10 +34,12 @@
                             </div>
                         </form>
                     </div>
-                    <a class="tf-button style-1 w208" href="add-brand.html"><i class="icon-plus"></i>Add new</a>
+                    <a class="tf-button style-1 w208" href="{{ route('add.brand') }}"><i class="icon-plus"></i>Add new</a>
                 </div>
                 <div class="wg-table table-all-user">
                     <div class="table-responsive">
+                     
+
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -54,7 +56,7 @@
                                     <td>{{ $brand->id }}</td>
                                     <td class="pname">
                                         <div class="image">
-                                            <img src="1718066367.html" alt="" class="image">
+                                            <img src="{{ asset('upload/brand_image/' . $brand->image) }}" alt="" class="image">
                                         </div>
                                         <div class="name">
                                             <a href="#" class="body-title-2">{{ $brand->name }}</a>
