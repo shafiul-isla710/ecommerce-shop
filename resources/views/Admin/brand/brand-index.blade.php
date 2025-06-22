@@ -8,7 +8,7 @@
                 <h3>Brands</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
-                        <a href="index.html">
+                        <a href="{{ route('admin.index') }}">
                             <div class="text-tiny">Dashboard</div>
                         </a>
                     </li>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="wg-table table-all-user">
                     <div class="table-responsive">
-                     
+                     <h2 class="text-success font-bold" >{{ session('status') }}</h2>
 
                         <table class="table table-striped table-bordered">
                             <thead>
@@ -66,12 +66,14 @@
                                     <td><a href="#" target="_blank">1</a></td>
                                     <td>
                                         <div class="list-icon-function">
-                                            <a href="#">
+                                            <a href=" {{ route('edit.brand', $brand->id) }} ">
                                                 <div class="item edit">
                                                     <i class="icon-edit-3"></i>
                                                 </div>
                                             </a>
-                                            <form action="#" method="POST">
+                                            <form action="{{ route('delete.brand', $brand->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
                                                 <div class="item text-danger delete">
                                                     <i class="icon-trash-2"></i>
                                                 </div>
@@ -93,3 +95,29 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+
+<script>
+    $(function(){
+        $('.delete').on('click', function(e){
+            e.preventDefault();
+            let form = $(this).closest('form');
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: ['NO', 'YES'],
+                confirmButtonColor:'#3085d6',
+                cancelButtonColor: '#d33',
+                dangerMode: true,
+            }).then(function(result){
+                if(result){
+                    form.submit();
+                }
+            })
+        });
+    })
+</script>
+    
+@endpush

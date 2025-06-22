@@ -23,42 +23,46 @@
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">New Brand</div>
+                        <div class="text-tiny">Edit Brand</div>
                     </li>
                 </ul>
             </div>
             <!-- new-category -->
             <div class="wg-box">
-                <form class="form-new-product form-style-1" action="{{ route('store.brand') }}" method="POST"
+                <form class="form-new-product form-style-1" action="{{ route('update.brand',$brand->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
+                    <input type="hidden" name="id" value="{{ $brand->id }}">
                     <fieldset class="name">
                         <div class="body-title">Brand Name <span class="tf-color-1">*</span></div>
                         <input class="flex-grow" type="text" placeholder="Brand name" name="name"
-                            value="" tabindex="0"  aria-required="true" required="">
+                            value="{{ $brand->name }}" tabindex="0" v aria-required="true" required="">
                     </fieldset>
                     @error('name')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert alert-message">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     <fieldset class="name">
                         <div class="body-title">Brand Slug <span class="tf-color-1">*</span></div>
                         <input class="flex-grow" type="text" placeholder="Brand Slug" name="slug"
-                            value="" tabindex="0"  aria-required="true" required="">
+                            value="{{ $brand->slug }}" tabindex="0"  aria-required="true" required="">
                     </fieldset>
                     @error('slug')
                         <span class="invalid-feedback" role="alert">
-                            <strong class="error">{{ $message }}</strong>
+                            <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     <fieldset>
                         <div class="body-title">Upload images <span class="tf-color-1">*</span>
                         </div>
                         <div class="upload-image flex-grow">
-                            <div class="item" id="imgpreview" style="display:none">
-                                <img src="" class="effect8" alt="">
+                            @if($brand->image)
+                            <div class="item" id="imgpreview" >
+                                <img src="{{ asset('upload/brand_image/' . $brand->image) }}" class="effect8" alt="">
                             </div>
+                            @endif
                             <div id="upload-file" class="item up-load">
                                 <label class="uploadfile" for="myFile">
                                     <span class="icon">
@@ -86,6 +90,7 @@
         </div>
     </div>
 @endsection
+
 
 @push('scripts')
 <script>

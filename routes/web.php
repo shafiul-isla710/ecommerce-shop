@@ -20,4 +20,11 @@ Route::middleware(['auth',AuthAdmin::class])->group(function(){
     Route::get('/admin-dashboard/brand',[AdminController::class,'brandPage'])->name('admin.brand');
     Route::get('/admin-dashboard/brand/add',[AdminController::class,'add_brand'])->name('add.brand');
     Route::post('/admin-dashboard/brand/store',[AdminController::class,'store_brand'])->name('store.brand');
+
+    //update brand
+    Route::get('/admin-dashboard/brand/edit/{id}',[AdminController::class,'edit_brand'])->name('edit.brand');
+    Route::put('/admin-dashboard/brand/update/{id}',[AdminController::class,'update_brand'])->name('update.brand');
+
+    //delete brand
+    Route::delete('/admin-dashboard/brand/delete/{id}',[AdminController::class,'delete_brand'])->name('delete.brand');
 });
