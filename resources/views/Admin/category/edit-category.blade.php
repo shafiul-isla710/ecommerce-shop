@@ -4,7 +4,7 @@
     <div class="main-content-inner">
         <div class="main-content-wrap">
             <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>Category Information</h3>
+                <h3>Brand infomation</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
                         <a href="{{ route('admin.index') }}">
@@ -16,7 +16,7 @@
                     </li>
                     <li>
                         <a href="{{ route('admin.category') }}">
-                            <div class="text-tiny">Brands</div>
+                            <div class="text-tiny">Category</div>
                         </a>
                     </li>
                     <li>
@@ -29,15 +29,15 @@
             </div>
             <!-- new-category -->
             <div class="wg-box">
-                <form class="form-new-product form-style-1" action="{{ route('update.brand',$brand->id) }}" method="POST"
+                <form class="form-new-product form-style-1" action="{{ route('update.category',$category->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <input type="hidden" name="id" value="{{ $brand->id }}">
+                    <input type="hidden" name="id" value="{{ $category->id }}">
                     <fieldset class="name">
-                        <div class="body-title">Brand Name <span class="tf-color-1">*</span></div>
+                        <div class="body-title">Category Name <span class="tf-color-1">*</span></div>
                         <input class="flex-grow" type="text" placeholder="Brand name" name="name"
-                            value="{{ $brand->name }}" tabindex="0" v aria-required="true" required="">
+                            value="{{ $category->name }}" tabindex="0" v aria-required="true" required="">
                     </fieldset>
                     @error('name')
                         <span class="invalid-feedback" role="alert alert-message">
@@ -45,9 +45,9 @@
                         </span>
                     @enderror
                     <fieldset class="name">
-                        <div class="body-title">Brand Slug <span class="tf-color-1">*</span></div>
+                        <div class="body-title">Category Slug <span class="tf-color-1">*</span></div>
                         <input class="flex-grow" type="text" placeholder="Brand Slug" name="slug"
-                            value="{{ $brand->slug }}" tabindex="0"  aria-required="true" required="">
+                            value="{{ $category->slug }}" tabindex="0"  aria-required="true" required="">
                     </fieldset>
                     @error('slug')
                         <span class="invalid-feedback" role="alert">
@@ -58,9 +58,9 @@
                         <div class="body-title">Upload images <span class="tf-color-1">*</span>
                         </div>
                         <div class="upload-image flex-grow">
-                            @if($brand->image)
+                            @if($category->image)
                             <div class="item" id="imgpreview" >
-                                <img src="{{ asset('upload/brand_image/' . $brand->image) }}" class="effect8" alt="">
+                                <img src="{{ asset('upload/category_images/' . $category->image) }}" class="effect8" alt="">
                             </div>
                             @endif
                             <div id="upload-file" class="item up-load">
@@ -96,10 +96,9 @@
 <script>
 $(function(){
     $('#myFile').on('change', function(e){
-        const photoInp = $('#myFile');
-        const file = photoInp[0].files[0];
+        const file = e.target.files[0];
         if(file){
-            $('#imgpreview img').attr('src', URL.createObjectURL(file));
+            $('#imgpreview').attr('src', URL.createObjectURL(file));
             $('#imgpreview').show();
         }
     });

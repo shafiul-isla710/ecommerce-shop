@@ -16,53 +16,49 @@
                     </li>
                     <li>
                         <a href="{{ route('admin.category') }}">
-                            <div class="text-tiny">Brands</div>
+                            <div class="text-tiny">Category</div>
                         </a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">Edit Category</div>
+                        <div class="text-tiny">New Category</div>
                     </li>
                 </ul>
             </div>
             <!-- new-category -->
             <div class="wg-box">
-                <form class="form-new-product form-style-1" action="{{ route('update.brand',$brand->id) }}" method="POST"
+                <form class="form-new-product form-style-1" action="{{ route('store.category') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
-                    <input type="hidden" name="id" value="{{ $brand->id }}">
                     <fieldset class="name">
-                        <div class="body-title">Brand Name <span class="tf-color-1">*</span></div>
-                        <input class="flex-grow" type="text" placeholder="Brand name" name="name"
-                            value="{{ $brand->name }}" tabindex="0" v aria-required="true" required="">
+                        <div class="body-title">Category Name <span class="tf-color-1">*</span></div>
+                        <input class="flex-grow" type="text" placeholder="Category name" name="name"
+                            value="" tabindex="0"  aria-required="true" required="">
                     </fieldset>
                     @error('name')
-                        <span class="invalid-feedback" role="alert alert-message">
+                        <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     <fieldset class="name">
-                        <div class="body-title">Brand Slug <span class="tf-color-1">*</span></div>
-                        <input class="flex-grow" type="text" placeholder="Brand Slug" name="slug"
-                            value="{{ $brand->slug }}" tabindex="0"  aria-required="true" required="">
+                        <div class="body-title">Category Slug <span class="tf-color-1">*</span></div>
+                        <input class="flex-grow" type="text" placeholder="Category Slug" name="slug"
+                            value="" tabindex="0"  aria-required="true" required="">
                     </fieldset>
                     @error('slug')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <strong class="error">{{ $message }}</strong>
                         </span>
                     @enderror
                     <fieldset>
                         <div class="body-title">Upload images <span class="tf-color-1">*</span>
                         </div>
                         <div class="upload-image flex-grow">
-                            @if($brand->image)
-                            <div class="item" id="imgpreview" >
-                                <img src="{{ asset('upload/brand_image/' . $brand->image) }}" class="effect8" alt="">
+                            <div class="item" id="imgpreview" style="display:none">
+                                <img src="" class="effect8" alt="">
                             </div>
-                            @endif
                             <div id="upload-file" class="item up-load">
                                 <label class="uploadfile" for="myFile">
                                     <span class="icon">
@@ -91,13 +87,13 @@
     </div>
 @endsection
 
-
 @push('scripts')
 <script>
 $(function(){
     $('#myFile').on('change', function(e){
         const photoInp = $('#myFile');
         const file = photoInp[0].files[0];
+        
         if(file){
             $('#imgpreview img').attr('src', URL.createObjectURL(file));
             $('#imgpreview').show();

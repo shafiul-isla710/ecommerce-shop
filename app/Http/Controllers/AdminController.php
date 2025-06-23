@@ -120,8 +120,6 @@ class AdminController extends Controller
             $uploaded->move(public_path('upload/brand_image/'), $file_name);
             $image = $file_name;
 
-            // Optional: Call your thumbnail function if needed
-            // $this->generateThumbnailImage($uploaded, $file_name);
         }
 
         $brand->update([

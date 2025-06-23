@@ -91,9 +91,10 @@
 <script>
 $(function(){
     $('#myFile').on('change', function(e){
-        const file = e.target.files[0];
+        const photoInp = $('#myFile');
+        const file = photoInp[0].files[0];
         if(file){
-            $('#imgpreview').attr('src', URL.createObjectURL(file));
+            $('#imgpreview img').attr('src', URL.createObjectURL(file));
             $('#imgpreview').show();
         }
     });
