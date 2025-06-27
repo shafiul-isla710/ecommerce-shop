@@ -113,41 +113,4 @@ $(function(){
 });
 </script>
 
-{{-- <script>
-document.addEventListener('DOMContentLoaded', function () {
-
-    // ফাইল সিলেক্ট করলে প্রিভিউ দেখাও
-    const fileInput = document.getElementById('myFile');
-    const previewImg = document.getElementById('imgpreview');
-
-    fileInput.addEventListener('change', function (e) {
-        const file = e.target.files[0];
-
-        if (file) {
-            const url = URL.createObjectURL(file);
-            previewImg.src = url;
-            previewImg.style.display = 'block';
-        }
-    });
-
-    // name ইনপুট থেকে slug তৈরি করে slug ইনপুটে বসাও
-    const nameInput = document.getElementById('name');
-    const slugInput = document.getElementById('slug');
-
-    nameInput.addEventListener('input', function () {
-        const nameValue = nameInput.value;
-        const slug = stringToSlug(nameValue);
-        slugInput.value = slug;
-    });
-
-    function stringToSlug(text) {
-        return text
-            .toLowerCase()
-            .replace(/ /g, '-')          // স্পেস -> ড্যাশ
-            .replace(/[^\w-]+/g, '');    // অক্ষর/সংখ্যা ছাড়া অন্য কিছু বাদ
-    }
-
-});
-</script> --}}
-
 @endpush
