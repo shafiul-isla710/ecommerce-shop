@@ -39,7 +39,7 @@ class Product extends Model
 
 
 
-    public function createCategory(array $input)
+    public function createProduct(array $input)
     {
 
         return self::query()->create($input);
